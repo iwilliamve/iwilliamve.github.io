@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+  color: white;
+}
+h1 {
+  font-family: "Bungee Spice", serif;
+  text-shadow: 4px 4px 4px #aaa;
+}
+
+body {
+  background-color: rgb(0, 0, 0);
+}
+
+table {
+  border: 1px solid black;
+  text-align: center;
+  width: 800px;
+  margin: 0 auto;
+}
+table th {
+  background-color: #007aaf;
+}
+table td {
+  text-align: left;
+}
+
+.header {
+  background-image: url(https://www.pizzeria-osolemio.nl/algemeen/img/photos/sorted/mediterraans/italiaans/italian3.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.subheader {
+  text-align: center;
+  font-size: 20px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.menu_title {
+  text-align: center;
+  font-size: 48px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.logo {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto 30px auto;
+  border-radius: 50%;
+  background-color: black;
+}
+.logo:hover {
+  background-color: rgb(245, 202, 9);
+}
+
+.logo img {
+  background-color: inherit;
+  height: 100px;
+  width: 100px;
+  margin: 25% 25%;
+}
+
+.content {
+  margin: 0 auto;
+  font-family: serif;
+  font-size: 30px;
+}
