@@ -40,7 +40,7 @@ sap.ui.define(
         this.outlineViewModel = this.getView().getModel("outlineModel");
 
         const oDocumentTypeModel = new JSONModel(
-          "../config/documentTypes.json"
+          "https://iwilliamve.github.io/projects/webapp/config/documentTypes.json"
         );
         this.getView().setModel(oDocumentTypeModel, "DocumentTypeModel");
 
