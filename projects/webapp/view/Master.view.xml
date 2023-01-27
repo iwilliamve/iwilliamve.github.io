@@ -1,0 +1,85 @@
+<mvc:View controllerName="docgenie.controller.Master" xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:dnd="sap.ui.core.dnd" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" height="100%">
+    <f:DynamicPage id="dynamicPageId" toggleHeaderOnTitleClick="false">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle id="idDynamicPageTitle">
+                <f:heading>
+                    <m:Title text="DocX Genie" id="idAppTitle" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:content>
+            <!-- Document type selection -->
+            <m:VBox class="sapUiSmallMargin" id="idVboxContainer">
+                <form:SimpleForm
+                    id="SimpleFormId"
+                    editable="false"
+                    layout="ResponsiveGridLayout"
+                    title="Document type"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false"
+                >
+                    <form:content>
+					<m:Text text="Please select the type of docuement you would like to generate" id="idTextDocTyp" class="sapUiMediumMargin"/>
+                        <m:Label text="Document Title" id="idLbLDocTitle" />
+                        <m:Input value="{DocumentModel>/doctitle}"/>
+                        <m:Label text="Select Document" id="idLbLDocSelect" />
+                        <m:ComboBox id="ComboDocSelectId" items="{
+							path: 'DocumentTypeModel>/DocumentTypes'
+						}">
+                            <core:Item key="{DocumentTypeModel>key}" text="{DocumentTypeModel>type}" id="idItemDocKey" />
+                        </m:ComboBox>
+                        <m:Button text="Generate" press="onGenerateOutline" id="idBtnGenerate" />
+                    </form:content>
+                </form:SimpleForm>
+
+                <!-- DynamicPage Content -->
+
+                <TreeTable id="TreeTable" rows="{path:'outlineModel>/', parameters: {arrayNames:['sections']}}" selectionMode="None" 
+				enableSelectAll="false" ariaLabelledBy="title" visible="{TableSettingsModel>/tableVisible}" class="sapUiMediumMarginTop">
+                    <extension>
+                        <m:OverflowToolbar style="Clear" id="idTreeTabToolbar">
+                            <m:Title id="title" text="Document Outline" />
+                            <m:Button id="cut" text="Cut" icon="sap-icon://scissors" press="onCut" />
+                            <m:Button id="paste" text="Paste" icon="sap-icon://paste" press="onPaste" enabled="false" />
+
+                            <m:ToolbarSpacer id="idTreeTabToolbarSpacer" />
+                            <m:Button text="Collapse all" press="onCollapseAll" id="idBtnCollAll" />
+                            <m:Button text="Expand first level" press="onExpandFirstLevel" id="idBtnExpandFristLvl" />
+                            <m:Button id="add" text="Row" icon="sap-icon://add" press="onAddEmptyRow" enabled="true" />
+                        </m:OverflowToolbar>
+                    </extension>
+                    <dragDropConfig>
+                        <dnd:DragDropInfo sourceAggregation="rows" targetAggregation="rows" dragStart="onDragStart" drop="onDrop" id="idDragDropInfo" />
+                    </dragDropConfig>
+                    <columns>
+                        <Column width="100%" id="idTreeTabCol">
+                            <m:Label text="Sections" id="idLblTree" />
+                            <template>
+                                <m:Input value="{outlineModel>text}" id="idRowInput" fieldWidth="100%" />
+                            </template>
+                        </Column>
+                    </columns>
+                </TreeTable>
+				<m:OverflowToolbar design="Solid" id="idTreeTabFtrToolbar" visible="{TableSettingsModel>/tableVisible}">
+				<m:ToolbarSpacer id="idTreeTabToolbarFtrSpacer" />
+				<m:Button text="Accept" press="onAcceptOutline" id="idBtnAcceptOutline" type="Accept"/>
+				</m:OverflowToolbar>
+            </m:VBox>
+        </f:content>
+
+        <!-- DynamicPage Footer -->
+        <f:footer />
+    </f:DynamicPage>
+</mvc:View>
